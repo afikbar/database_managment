@@ -1,16 +1,21 @@
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>TedTalks DB</title>
 </head>
 <body>
 <h1>Welcome to TedTalks Information System!</h1>
 <h2> Here is our generic descriptions, WOW!</h2>
-<div style="text-align:center;"><img src="ted.gif" style="width:600px;">
-    <br>
+<div class="card" style="text-align:center;">
+    <img src="ted.gif" style="width:600px;border-radius: 8px">
+</div>
+<br>
+<div style="text-align:center;">
     <a href="submit_talk.php">Submit a new Talk</a>
 </div>
 <br>
-<div class="datagrid" style="max-width:400px; margin:0 auto;">
+<div class="card datagrid">
     <table>
         <thead>
         <tr>

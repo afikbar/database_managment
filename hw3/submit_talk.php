@@ -18,23 +18,20 @@ $database = "afikbar";
 $c = array("Database" => $database, "UID" => $user, "PWD" => $pass);
 sqlsrv_configure('WarningsReturnAsErrors', 0);
 $conn = sqlsrv_connect($server, $c);
-if($conn === false)
-{
+if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
 //echo "connected to DB"; //debug
 // In case of success
-if (isset($_POST["submit"]))
-{
+if (isset($_POST["submit"])) {
     // First insert data to the Parts table
     $sql = "INSERT INTO Parts(pid,pname,color) VALUES($_POST[PID],'$_POST[PNAME]', '$_POST[COLOR]')";
     //echo $sql."<br>"; //debug
     /* Example:  $sql = "INSERT INTO Parts(pid,pname,color) VALUES($_POST[PID], ', 'Red');"; */
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
-    if (!$result)
-    {
+    if (!$result) {
         die("Couldn't add the part specified.<br>");
     }
     // Now insert data to the Catalog table
@@ -54,12 +51,11 @@ if (isset($_POST["submit"]))
         <select name="SUPID">
             <option value="">Choose Supplier...</option>
             <?php
-        $sql = "SELECT sid,sname FROM Suppliers;";
-        $result = sqlsrv_query($conn, $sql);
-        while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
-        {
-            echo'<option value='.$row['sid'].'>'.$row['sname'].'</option>'; //debug
-            //your code here
+            $sql = "SELECT sid,sname FROM Suppliers;";
+            $result = sqlsrv_query($conn, $sql);
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                echo '<option value=' . $row['sid'] . '>' . $row['sname'] . '</option>'; //debug
+                //your code here
             }
             ?>
         </select>
