@@ -11,9 +11,6 @@
     <img src="ted.gif" style="width:600px;border-radius: 8px">
 </div>
 <br>
-<div style="text-align:center;">
-    <a href="submit_talk.php">Submit a new Talk</a>
-</div>
 <br>
 <div class="card datagrid">
     <?php
@@ -90,7 +87,8 @@
                 $cls = '';
             }
             $popularity = (10 * $row['comments'] + 0.1 * $row['views']) / $row['duration'];
-            echo "<tr " .$cls . "><td>" . $row['name'] . "</td><td>" . $popularity . "</td></tr>";
+            $popularity = round($popularity,4);
+            echo "<tr " .$cls . "><td>" . $row['name'] . "</td><td align='center'>" . $popularity . "</td></tr>";
             $i++;
         }
         ?>
