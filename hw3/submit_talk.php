@@ -1,14 +1,9 @@
 <html>
 <head>
-    Test
-    <style>
-        th, td {
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-<h1>Add Parts</h1>
 <?php
 // Connecting to the database
 $server = "tcp:techniondbcourse01.database.windows.net,1433";
@@ -26,7 +21,19 @@ if ($conn === false) {
 // In case of success
 if (isset($_POST["submit"])) {
     // First insert data to the Parts table
-    $sql = "INSERT INTO Parts(pid,pname,color) VALUES($_POST[PID],'$_POST[PNAME]', '$_POST[COLOR]')";
+//    $sql = "INSERT INTO Ted() VALUES($_POST[PID],'$_POST[PNAME]', '$_POST[COLOR]')";
+    $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
+                                speaker_occupation, url, duration, comments, views)
+                VALUES ('".addslashes($_POST[name])."',
+                        '".addslashes($_POST[main_speaker])."',
+                        '".addslashes($_POST[description])."',
+                        '".addslashes($_POST[event])."',
+                        '".addslashes($_POST[languages])."',
+                        '".addslashes($_POST[speaker_occupation])."',
+                        '".addslashes($_POST[url])."',
+                        '".addslashes($_POST[duration])."',
+                        '".addslashes($_POST[comments])."',
+                        '".addslashes($_POST[views])."');";
     //echo $sql."<br>"; //debug
     /* Example:  $sql = "INSERT INTO Parts(pid,pname,color) VALUES($_POST[PID], ', 'Red');"; */
     $result = sqlsrv_query($conn, $sql);
@@ -34,56 +41,72 @@ if (isset($_POST["submit"])) {
     if (!$result) {
         die("Couldn't add the part specified.<br>");
     }
-    // Now insert data to the Catalog table
-    $sql = "INSERT INTO Catalog(sid,pid,cost) VALUES($_POST[SUPID],$_POST[PID], $_POST[PRICE])";
-    // echo $sql."<br>"; //debug
-    $result = sqlsrv_query($conn, $sql);
-    // In case of failure
-    if (!$result) {
-        die("Couldn't add the part to the catalog.<br>");
-    }
     echo "The details have been added to the database.<br><br>";
 }
 ?>
-
-<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-    <label>
-        <select name="SUPID">
-            <option value="">Choose Supplier...</option>
-            <?php
-            $sql = "SELECT sid,sname FROM Suppliers;";
-            $result = sqlsrv_query($conn, $sql);
-            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                echo '<option value=' . $row['sid'] . '>' . $row['sname'] . '</option>'; //debug
-                //your code here
-            }
-            ?>
-        </select>
-    </label>
-    <h2>Part Details</h2>
+<form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+    <h1>Add a new TedTalk to the Databse:</h1>
     <table border="0">
         <tr>
-            <td>ID</td>
+            <td>Name:</td>
             <td><label>
-                    <input name="PID" type="text" size="10">
+                    <input name="name" type="text" size="25">
                 </label></td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td>Main Speaker:</td>
             <td><label>
-                    <input name="PNAME" type="text" size="20">
+                    <input name="main_speaker" type="text" size="20">
                 </label></td>
         </tr>
         <tr>
-            <td>Color</td>
+            <td>Description:</td>
             <td><label>
-                    <input name="COLOR" type="text" size="10">
+                    <TEXTAREA name="description" rows="7" cols="25"
+                    >Enter a brief description of the Talk.</TEXTAREA>
+<!--                    <input name="description" type="text" size="10">-->
                 </label></td>
         </tr>
         <tr>
-            <td>Price</td>
+            <td>Event</td>
             <td><label>
-                    <input name="PRICE" type="text" size="5">
+                    <input name="event" type="text" size="25">
+                </label></td>
+        </tr>
+        <tr>
+            <td>Number of languages:</td>
+            <td><label>
+                    <input name="languages" type="text" size="5">
+                </label></td>
+        </tr>
+        <tr>
+            <td>Speaker's Occupation:</td>
+            <td><label>
+                    <input name="speaker_occupation" type="text" size="25">
+                </label></td>
+        </tr>
+        <tr>
+            <td>Talk Link:</td>
+            <td><label>
+                    <input name="url" type="text" size="25">
+                </label></td>
+        </tr>
+        <tr>
+            <td>Talk's duration (Minutes)</td>
+            <td><label>
+                    <input name="duration" type="text" size="5">
+                </label></td>
+        </tr>
+        <tr>
+            <td>Talk's amount of comments:</td>
+            <td><label>
+                    <input name="comments" type="text" size="5">
+                </label></td>
+        </tr>
+        <tr>
+            <td>Views:</td>
+            <td><label>
+                    <input name="views" type="text" size="5">
                 </label></td>
         </tr>
         <tr>
