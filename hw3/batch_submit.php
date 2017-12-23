@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>TedTalks DB</title>
+    <title>TedTalks DB batch submit</title>
 </head>
 <body>
 <?php
@@ -19,20 +19,28 @@ if (isset($_POST["submit"])) {
         echo "error";
         die(print_r(sqlsrv_errors(), true));
     }
-    echo "connected to DB<br>"; //debug
-    echo $_FILES[csv][error]."<br>";
-    echo $_FILES[csv][name]."<br>";
-    echo $_FILES[csv][tmp_name]."<br>";
+//    echo "connected to DB<br>"; //debug
+//    echo $_FILES[csv][error]."<br>";
+//    echo $_FILES[csv][name]."<br>";
+//    echo $_FILES[csv][tmp_name]."<br>";
     $file = $_FILES[csv][tmp_name];
-    echo "Importing file: ";
-    echo $file."<br>";
-    echo "file($_FILES[csv][tmp_name])";
-    echo "<br>";
-    $csvAsArray = array_map('str_getcsv', file($_FILES[csv][tmp_name]));
-    echo "$csvAsArray";
+//    echo "Importing file: ";
+//    echo $file."<br>";
+//    echo "file($_FILES[csv][tmp_name])";
+//    echo "<br>";
+    //$csvAsArray = array_map(function($v){return str_getcsv($v, ",");}, file($file));
+    $file = fopen($file, 'r');
+    $csvAsArray = [];
+
+    while ($row = fgetcsv($file)) {
+        $csvAsArray[] = $row;
+    }
+
+    fclose($file);
+    //print_r($csvAsArray);
     $header = array_shift($csvAsArray);
     $csv = array();
-    echo "before CSV create<br>";
+//    echo "before CSV create<br>";
 //    if (($handle = fopen($file, "r")) !== FALSE) {
 //        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 //            $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages, speaker_occupation, url, duration, comments, views)
@@ -51,27 +59,32 @@ if (isset($_POST["submit"])) {
 //        }
 //        fclose($handle);
 //    }
-
+//    echo "Create csv array<br>";
     foreach ($csvAsArray as $row) {
-        echo "$row<br>";
         $csv[] = array_combine($header, $row);
+//        echo "<br>";
+//        print_r($row);
+//        echo "<br>";
     }
-    echo "$csv";
+//    print_r($csv);
+//    echo $csv[0]."<br>";
+//    echo "try to insert to SQL<br>";
     foreach ($csv as $row) {
         $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
                                 speaker_occupation, url, duration, comments, views)
-                VALUES ('".addslashes($row['name'])."',
-                        '".addslashes($row['main_speaker'])."',
-                        '".addslashes($row['description'])."',
-                        '".addslashes($row['event'])."',
-                        '".addslashes($row['languages'])."',
-                        '".addslashes($row['speaker_occupation'])."',
-                        '".addslashes($row['url'])."',
-                        '".addslashes($row['duration'])."',
-                        '".addslashes($row['comments'])."',
-                        '".addslashes($row['views'])."');";
+                VALUES ('".addslashes($row[name])."',
+                        '".addslashes($row[main_speaker])."',
+                        '".addslashes($row[description])."',
+                        '".addslashes($row[event])."',
+                        '".addslashes($row[languages])."',
+                        '".addslashes($row[speaker_occupation])."',
+                        '".addslashes($row[url])."',
+                        '".addslashes($row[duration])."',
+                        '".addslashes($row[comments])."',
+                        '".addslashes($row[views])."');";
         sqlsrv_query($conn, $sql);
     }
+    echo "<h2>Submitted!</h2>";
 }
 ?>
 <div class="card" style="text-align: left; width: auto">
