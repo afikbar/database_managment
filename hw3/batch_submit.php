@@ -5,14 +5,6 @@
     <title>TedTalks DB</title>
 </head>
 <body>
-<div class="card" style="text-align: left; width: auto">
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
-        <input name="csv" type="file" id="csv"/>
-        <br><br>
-        <input type="submit" name="submit" value="Submit"/>
-    </form>
-</div>
-</body>
 <?php
 if (isset($_POST["submit"])) {
 // Connect to the database
@@ -37,6 +29,7 @@ if (isset($_POST["submit"])) {
     }
 
     foreach ($csv as $row) {
+        echo "$row";
         $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
                                 speaker_occupation, url, duration, comments, views)
                 VALUES ('".addslashes($row['name'])."',
@@ -53,3 +46,12 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
+<div class="card" style="text-align: left; width: auto">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+        <input name="csv" type="file" id="csv"/>
+        <br><br>
+        <input type="submit" name="submit" value="Submit"/>
+    </form>
+</div>
+</body>
+</html>
