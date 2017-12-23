@@ -33,45 +33,45 @@ if (isset($_POST["submit"])) {
     $header = array_shift($csvAsArray);
     $csv = array();
     echo "before CSV create<br>";
-    if (($handle = fopen($file, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages, speaker_occupation, url, duration, comments, views) 
-            VALUES  ('" . addslashes($data[7]) . "',
-                     '" . addslashes($data[6]) . "',
-                     '" . addslashes($data[1]) . "',
-                     '" . addslashes($data[3]) . "',
-                     '" . addslashes($data[5]) . "',
-                     '" . addslashes($data[12]) . "',
-                     '" . addslashes($data[15]) . "',
-                     '" . addslashes($data[2]) . "',
-                     '" . addslashes($data[0]) . "',
-                     '" . addslashes($data[16]) . "'); 
-             ";
-            sqlsrv_query($conn, $sql);
-        }
-        fclose($handle);
-    }
+//    if (($handle = fopen($file, "r")) !== FALSE) {
+//        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+//            $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages, speaker_occupation, url, duration, comments, views)
+//            VALUES  ('" . addslashes($data[7]) . "',
+//                     '" . addslashes($data[6]) . "',
+//                     '" . addslashes($data[1]) . "',
+//                     '" . addslashes($data[3]) . "',
+//                     '" . addslashes($data[5]) . "',
+//                     '" . addslashes($data[12]) . "',
+//                     '" . addslashes($data[15]) . "',
+//                     '" . addslashes($data[2]) . "',
+//                     '" . addslashes($data[0]) . "',
+//                     '" . addslashes($data[16]) . "');
+//             ";
+//            sqlsrv_query($conn, $sql);
+//        }
+//        fclose($handle);
+//    }
 
-//    foreach ($csvAsArray as $row) {
-//        echo "$row<br>";
-//        $csv[] = array_combine($header, $row);
-//    }
-//    echo "$csv";
-//    foreach ($csv as $row) {
-//        $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
-//                                speaker_occupation, url, duration, comments, views)
-//                VALUES ('".addslashes($row['name'])."',
-//                        '".addslashes($row['main_speaker'])."',
-//                        '".addslashes($row['description'])."',
-//                        '".addslashes($row['event'])."',
-//                        '".addslashes($row['languages'])."',
-//                        '".addslashes($row['speaker_occupation'])."',
-//                        '".addslashes($row['url'])."',
-//                        '".addslashes($row['duration'])."',
-//                        '".addslashes($row['comments'])."',
-//                        '".addslashes($row['views'])."');";
-//        sqlsrv_query($conn, $sql);
-//    }
+    foreach ($csvAsArray as $row) {
+        echo "$row<br>";
+        $csv[] = array_combine($header, $row);
+    }
+    echo "$csv";
+    foreach ($csv as $row) {
+        $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
+                                speaker_occupation, url, duration, comments, views)
+                VALUES ('".addslashes($row['name'])."',
+                        '".addslashes($row['main_speaker'])."',
+                        '".addslashes($row['description'])."',
+                        '".addslashes($row['event'])."',
+                        '".addslashes($row['languages'])."',
+                        '".addslashes($row['speaker_occupation'])."',
+                        '".addslashes($row['url'])."',
+                        '".addslashes($row['duration'])."',
+                        '".addslashes($row['comments'])."',
+                        '".addslashes($row['views'])."');";
+        sqlsrv_query($conn, $sql);
+    }
 }
 ?>
 <div class="card" style="text-align: left; width: auto">
