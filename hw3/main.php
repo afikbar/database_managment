@@ -33,7 +33,7 @@
         $page = 1;
     };
     $start_from = ($page - 1) * $results_per_page;
-    $sql = "SELECT name,comments,views,duration FROM Ted ORDER BY CURRENT_TIMESTAMP
+    $sql = "SELECT name,(10*comments+0.1*views)/duration AS popularity FROM Ted ORDER BY CURRENT_TIMESTAMP
             OFFSET $start_from ROWS FETCH NEXT  $results_per_page ROWS ONLY ";
     $rs_result = sqlsrv_query($conn, $sql);
     ?>
@@ -66,13 +66,6 @@
 //                            echo ">" . $i . "</a></li>";
 //                        };
                         ?>
-                        <!--                        <li><a href="#"><span>Previous</span></a></li>-->
-                        <!--                        <li><a href="#" class="active"><span>1</span></a></li>-->
-                        <!--                        <li><a href="#"><span>2</span></a></li>-->
-                        <!--                        <li><a href="#"><span>3</span></a></li>-->
-                        <!--                        <li><a href="#"><span>4</span></a></li>-->
-                        <!--                        <li><a href="#"><span>5</span></a></li>-->
-                        <!--                        <li><a href="#"><span>Next</span></a></li>-->
                     </ul>
                 </div>
         </tr>
@@ -86,7 +79,8 @@
             } else {
                 $cls = '';
             }
-            $popularity = (10 * $row['comments'] + 0.1 * $row['views']) / $row['duration'];
+            //$popularity = (10 * $row['comments'] + 0.1 * $row['views']) / $row['duration'];
+            $popularity = (float)$row['popularity'];
             $popularity = round($popularity,4);
             echo "<tr " .$cls . "><td>" . $row['name'] . "</td><td align='center'>" . $popularity . "</td></tr>";
             $i++;
