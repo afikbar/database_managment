@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Welcome to TedTalks Information System!</h1>
-<h2> Here is our generic descriptions, WOW!</h2>
+<h2>View and manage previous TedTalks</h2>
 <div class="card" style="text-align:center;">
     <img src="ted.gif" style="width:600px;border-radius: 8px">
 </div>
@@ -54,18 +54,13 @@
                         $result = sqlsrv_query($conn, $sql);
                         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
                         $total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
-                        if ($page!=1){
-                            echo "<li><a href='main.php?page=".($page-1)."'><span>Previous</span></a></li>";
+                        if ($page != 1) {
+                            echo "<li><a href='main.php?page=" . ($page - 1) . "'><span>Previous</span></a></li>";
                         };
-                        if ($page!=$total_pages) {
-                            echo "<li><a href='main.php?page=" . ($page + 1)."'><span>Next</span></a></li>";
+                        if ($page != $total_pages) {
+                            echo "<li><a href='main.php?page=" . ($page + 1) . "'><span>Next</span></a></li>";
                         };
-//                        for ($i = 1; $i <= $total_pages; $i++) {  // print links for all pages
-//                            echo "<li><a href='main.php?page=" . $i . "'";
-//                            if ($i == $page) echo " class='active'";
-//                            echo ">" . $i . "</a></li>";
-//                        };
-                        ?>
+                       ?>
                     </ul>
                 </div>
         </tr>
@@ -79,10 +74,9 @@
             } else {
                 $cls = '';
             }
-            //$popularity = (10 * $row['comments'] + 0.1 * $row['views']) / $row['duration'];
             $popularity = (float)$row['popularity'];
-            $popularity = round($popularity,4);
-            echo "<tr " .$cls . "><td>" . $row['name'] . "</td><td align='center'>" . $popularity . "</td></tr>";
+            $popularity = round($popularity, 4);
+            echo "<tr " . $cls . "><td>" . $row['name'] . "</td><td align='center'>" . $popularity . "</td></tr>";
             $i++;
         }
         ?>

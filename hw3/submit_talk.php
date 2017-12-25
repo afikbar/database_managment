@@ -18,24 +18,20 @@ if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 //echo "connected to DB"; //debug
-// In case of success
 if (isset($_POST["submit"])) {
-    // First insert data to the Parts table
-//    $sql = "INSERT INTO Ted() VALUES($_POST[PID],'$_POST[PNAME]', '$_POST[COLOR]')";
     $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
                                 speaker_occupation, url, duration, comments, views)
-                VALUES ('".addslashes($_POST[name])."',
-                        '".addslashes($_POST[main_speaker])."',
-                        '".addslashes($_POST[description])."',
-                        '".addslashes($_POST[event])."',
-                        '".addslashes($_POST[languages])."',
-                        '".addslashes($_POST[speaker_occupation])."',
-                        '".addslashes($_POST[url])."',
-                        '".addslashes($_POST[duration])."',
-                        '".addslashes($_POST[comments])."',
-                        '".addslashes($_POST[views])."');";
+                VALUES ('" . addslashes($_POST[name]) . "',
+                        '" . addslashes($_POST[main_speaker]) . "',
+                        '" . addslashes($_POST[description]) . "',
+                        '" . addslashes($_POST[event]) . "',
+                        '" . addslashes($_POST[languages]) . "',
+                        '" . addslashes($_POST[speaker_occupation]) . "',
+                        '" . addslashes($_POST[url]) . "',
+                        '" . addslashes($_POST[duration]) . "',
+                        '" . addslashes($_POST[comments]) . "',
+                        '" . addslashes($_POST[views]) . "');";
     //echo $sql."<br>"; //debug
-    /* Example:  $sql = "INSERT INTO Parts(pid,pname,color) VALUES($_POST[PID], ', 'Red');"; */
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
@@ -64,7 +60,6 @@ if (isset($_POST["submit"])) {
             <td><label>
                     <TEXTAREA name="description" rows="7" cols="25"
                     >Enter a brief description of the Talk.</TEXTAREA>
-<!--                    <input name="description" type="text" size="10">-->
                 </label></td>
         </tr>
         <tr>

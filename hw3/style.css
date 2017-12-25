@@ -41,9 +41,7 @@ body {
     font: normal 12px/150% Courier New, Courier, monospace;
     background: #fff;
     overflow: hidden;
-    /* -webkit-border-radius: 8px; */
     -moz-border-radius: 8px;
-    /*border-radius: 8px;*/
 }
 
 .datagrid table td, .datagrid table th {
@@ -137,11 +135,5 @@ iframe {
     margin: 0;
     padding: 0;
     border: none;
-    /*width: value;*/
-    /*height: value;*/
 
-}
-
-.box {
-    display: inline-block;
 }
