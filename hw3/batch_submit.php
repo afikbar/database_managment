@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
 ?>
 <div class="card" style="text-align: left; width: auto">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
-        <input name="csv" type="file" id="csv"/>
+        <input name="csv" type="file" id="csv" required/>
         <br><br>
         <input type="submit" name="submit" value="Submit"/>
     </form>

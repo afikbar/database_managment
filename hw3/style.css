@@ -53,6 +53,7 @@ body {
 
 .datagrid table td, .datagrid table th {
     padding: 5px 3px;
+
 }
 
 .datagrid table thead th {
@@ -62,6 +63,7 @@ body {
     font-size: 15px;
     font-weight: bold;
     border-left: 1px solid #006064;
+    text-align: center;
 }
 
 .datagrid table thead th:first-child {
