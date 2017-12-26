@@ -1,7 +1,14 @@
+*{
+    font-family: Roboto;
+}
+input[required]::placeholder{
+    color:red;
+    text-align: right;
+}
+
 th, td {
     padding: 10px;
 }
-
 h1, h2 {
     font-family: Roboto;
     text-align: center;

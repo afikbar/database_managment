@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
                         '" . addslashes($_POST[languages]) . "',
                         '" . addslashes($_POST[speaker_occupation]) . "',
                         '" . addslashes($_POST[url]) . "',
-                        '" . addslashes($_POST[duration]) . "',
+                        '" . addslashes($_POST[duration]*60) . "',
                         '" . addslashes($_POST[comments]) . "',
                         '" . addslashes($_POST[views]) . "');";
     //echo $sql."<br>"; //debug
@@ -44,68 +44,85 @@ if (isset($_POST["submit"])) {
     <h1>Add a new TedTalk to the Databse:</h1>
     <table border="0">
         <tr>
-            <td>Name:</td>
+            <td>TedTalk name:</td>
             <td><label>
-                    <input name="name" type="text" size="25">
+                    <input name="name" type="text" size="25" required
+                           title="Name is a required field!"
+                           placeholder="*"
+                    />
                 </label></td>
         </tr>
         <tr>
-            <td>Main Speaker:</td>
+            <td>Main speaker:</td>
             <td><label>
-                    <input name="main_speaker" type="text" size="20">
+                    <input name="main_speaker" type="text" size="20"
+                           placeholder="Speaker's name"
+                    />
                 </label></td>
         </tr>
         <tr>
             <td>Description:</td>
             <td><label>
                     <TEXTAREA name="description" rows="7" cols="25"
-                    >Enter a brief description of the Talk.</TEXTAREA>
+                              placeholder="Enter a brief description of the Talk."
+                    ></TEXTAREA>
                 </label></td>
         </tr>
         <tr>
             <td>Event</td>
             <td><label>
-                    <input name="event" type="text" size="25">
+                    <input name="event" type="text" size="25"
+                           placeholder="Talk's TED event"
+                    />
                 </label></td>
         </tr>
         <tr>
             <td>Number of languages:</td>
             <td><label>
-                    <input name="languages" type="text" size="5">
+                    <input name="languages" type="number" min="1" size="5">
                 </label></td>
         </tr>
         <tr>
-            <td>Speaker's Occupation:</td>
+            <td>Speaker's occupation:</td>
             <td><label>
-                    <input name="speaker_occupation" type="text" size="25">
+                    <input name="speaker_occupation" type="text" size="25"
+                    />
                 </label></td>
         </tr>
         <tr>
-            <td>Talk Link:</td>
+            <td>Talk link:</td>
             <td><label>
-                    <input name="url" type="text" size="25">
+                    <input name="url" type="url" size="25"
+                           placeholder="URL"
+                    />
                 </label></td>
         </tr>
         <tr>
-            <td>Talk's duration (Minutes)</td>
+            <td>Talk's duration</td>
             <td><label>
-                    <input name="duration" type="text" size="5">
+                    <input name="duration" type="number" min="0" size="5"
+                           placeholder="Minutes"
+                    />
                 </label></td>
         </tr>
         <tr>
             <td>Talk's amount of comments:</td>
             <td><label>
-                    <input name="comments" type="text" size="5">
+                    <input name="comments" type="number" size="5">
                 </label></td>
         </tr>
         <tr>
             <td>Views:</td>
             <td><label>
-                    <input name="views" type="text" size="5">
+                    <input name="views" type="number" size="5"
+                           placeholder="Views count"
+                    />
                 </label></td>
         </tr>
         <tr>
-            <td colspan="2"><br><input name="submit" type="submit" value="Send"></td>
+            <td colspan="2"><br><input name="submit" type="submit" value="Add Talk">
+                <input type="reset">
+            </td>
         </tr>
 
     </table>
