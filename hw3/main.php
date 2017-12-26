@@ -33,7 +33,7 @@
         $page = 1;
     };
     $start_from = ($page - 1) * $results_per_page;
-    $sql = "SELECT name,(10*comments+0.1*views)/duration AS popularity FROM Ted ORDER BY CURRENT_TIMESTAMP
+    $sql = "SELECT name,url,(10*comments+0.1*views)/duration AS popularity FROM Ted ORDER BY CURRENT_TIMESTAMP
             OFFSET $start_from ROWS FETCH NEXT  $results_per_page ROWS ONLY ";
     $rs_result = sqlsrv_query($conn, $sql);
     ?>
@@ -55,12 +55,12 @@
                         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
                         $total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
                         if ($page != 1) {
-                            echo "<li><a href='main.php?page=" . ($page - 1) . "'><span>Previous</span></a></li>";
+                            echo "<li><a href='main.php?page={($page - 1)}'><span>Previous</span></a></li>";
                         };
                         if ($page != $total_pages) {
-                            echo "<li><a href='main.php?page=" . ($page + 1) . "'><span>Next</span></a></li>";
+                            echo "<li><a href='main.php?page={($page + 1)}'><span>Next</span></a></li>";
                         };
-                       ?>
+                        ?>
                     </ul>
                 </div>
         </tr>
@@ -76,7 +76,8 @@
             }
             $popularity = (float)$row['popularity'];
             $popularity = round($popularity, 4);
-            echo "<tr " . $cls . "><td>" . $row['name'] . "</td><td align='center'>" . $popularity . "</td></tr>";
+            echo "<tr {$cls}><td><a href={$row['url']}> {$row['name']} </a></td>
+                             <td align='center'>{$popularity}</td></tr>";
             $i++;
         }
         ?>
