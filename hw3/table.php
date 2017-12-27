@@ -42,24 +42,24 @@
         </thead>
         <tfoot>
         <tr>
-            <td colspan="2">
+            <td colspan="2" style="background: #B2EBF2;">
                 <div id="paging">
                     <?php
                     $sql = "SELECT COUNT(name) AS total FROM Ted";
                     $result = sqlsrv_query($conn, $sql);
                     $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
                     $total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
-                    echo "<label style='float: left; background: transparent'>Showing page {$page} out
+                    echo "<label style='float: left;'>Showing page {$page} out
                         of {$total_pages} </label>";
                     echo "<ul>";
 
-                        if ($page != 1) {
-                            echo "<li><a href='table.php?page=", ($page - 1), "'><span>Previous</span></a></li>";
-                        };
-                        if ($page != $total_pages) {
-                            echo "<li><a href='table.php?page=", ($page + 1), "'><span>Next</span></a></li>";
-                        };
-                        ?>
+                    if ($page > 1) {
+                        echo "<li><a href='table.php?page=", ($page - 1), "'><span>Previous</span></a></li>";
+                    };
+                    if ($page < $total_pages) {
+                        echo "<li><a href='table.php?page=", ($page + 1), "'><span>Next</span></a></li>";
+                    };
+                    ?>
                     </ul>
 
                 </div>
