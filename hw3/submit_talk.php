@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
                         '" . addslashes($_POST[languages]) . "',
                         '" . addslashes($_POST[speaker_occupation]) . "',
                         '" . addslashes($_POST[url]) . "',
-                        '" . addslashes($_POST[duration]*60) . "',
+                        '" . addslashes($_POST[duration] * 60) . "',
                         '" . addslashes($_POST[comments]) . "',
                         '" . addslashes($_POST[views]) . "');";
     //echo $sql."<br>"; //debug
@@ -121,8 +121,9 @@ if (isset($_POST["submit"])) {
         </tr>
         <tr>
             <td><br>
-                <button class="fab" type="reset" > <img src="images/ic_clear_white_24dp_2x.png"/></button>
-            </td><td align="right"><br>
+                <button class="fab" type="reset"><img src="images/ic_clear_white_24dp_2x.png"/></button>
+            </td>
+            <td align="right"><br>
                 <input class="fab" name="submit" type="image" src="images/ic_add_circle_white_24dp_2x2.png">
 
             </td>
