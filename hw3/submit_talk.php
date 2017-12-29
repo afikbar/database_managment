@@ -120,8 +120,11 @@ if (isset($_POST["submit"])) {
                 </label></td>
         </tr>
         <tr>
-            <td colspan="2"><br><input name="submit" type="submit" value="Add Talk">
-                <input type="reset">
+            <td><br>
+                <button class="fab" type="reset" > <img src="images/ic_clear_white_24dp_2x.png"/></button>
+            </td><td align="right"><br>
+                <input class="fab" name="submit" type="image" src="images/ic_add_circle_white_24dp_2x2.png">
+
             </td>
         </tr>
 

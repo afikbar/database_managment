@@ -1,14 +1,22 @@
-*{
+* {
     font-family: Roboto;
 }
-input[required]::placeholder{
-    color:red;
+
+input[required]::placeholder {
+    color: red;
     text-align: right;
+}
+
+input[type='text'], input[type='url'], input[type='number'], textarea {
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .26);
 }
 
 th, td {
     padding: 10px;
 }
+
 h1, h2 {
     font-family: Roboto;
     text-align: center;
@@ -135,6 +143,7 @@ body {
     border-color: #006064;
     color: #FFFFFF;
     background: #006064 none;
+    box-shadow: 0 0 14px 1px #0060648c;
 }
 
 div.dhtmlx_window_active, div.dhx_modal_cover_dv {
@@ -146,4 +155,24 @@ iframe {
     padding: 0;
     border: none;
 
+}
+
+.fab {
+    width: 70px;
+    height: 70px;
+    background-color: #006064;
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 #666;
+    border: 0;
+    font-size: 50px;
+    line-height: 70px;
+    color: white;
+    text-align: center;
+    position: relative;
+    transition: all 0.1s ease-in-out;
+}
+
+.fab:hover {
+    box-shadow: 0 6px 14px 0 #666;
+    transform: scale(1.05);
 }
