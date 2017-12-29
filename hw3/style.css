@@ -143,7 +143,7 @@ body {
     border-color: #006064;
     color: #FFFFFF;
     background: #006064 none;
-    box-shadow: 0 0 14px 1px #0060648c;
+    box-shadow: 0 0 14px 1px rgba(0, 96, 100, 0.5490196078431373);
 }
 
 div.dhtmlx_window_active, div.dhx_modal_cover_dv {
