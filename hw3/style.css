@@ -144,6 +144,7 @@ body {
     color: #FFFFFF;
     background: #006064 none;
     box-shadow: 0 0 14px 1px rgba(0, 96, 100, 0.5490196078431373);
+    text-blink: yes;
 }
 
 div.dhtmlx_window_active, div.dhx_modal_cover_dv {
@@ -158,8 +159,8 @@ iframe {
 }
 
 .fab {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     background-color: #006064;
     border-radius: 50%;
     box-shadow: 0 6px 10px 0 #666;
@@ -175,4 +176,34 @@ iframe {
 .fab:hover {
     box-shadow: 0 6px 14px 0 #666;
     transform: scale(1.05);
+}
+
+.plus{
+    color: white;
+    position: absolute;
+    top: 0;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 55px;
+    font-size: 36px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    animation: plus-out 0.3s;
+    transition: all 0.3s;
+}
+
+@keyframes plus-out {
+    from {
+        opacity: 0;
+        transform: rotateZ(180deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateZ(0deg);
+    }
 }

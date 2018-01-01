@@ -121,10 +121,11 @@ if (isset($_POST["submit"])) {
         </tr>
         <tr>
             <td><br>
-                <button class="fab" type="reset"><img src="images/ic_clear_white_24dp_2x.png"/></button>
+                <button class="fab" type="reset"><p class="plus" style="font-size: 25px">&#10006</p></button>
             </td>
             <td align="right"><br>
-                <input class="fab" name="submit" type="image" src="images/ic_add_circle_white_24dp_2x2.png">
+                <button type="submit" class="fab"><p class="plus">+</p> </button>
+<!--                <input class="fab" name="submit" type="submit">-->
 
             </td>
         </tr>
