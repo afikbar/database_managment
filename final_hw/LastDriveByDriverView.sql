@@ -2,7 +2,8 @@ CREATE VIEW LastDriveByDriver AS
   SELECT
     driverID,
     Details.passenger,
-    Details.gps,
+    Details.latitude,
+    Details.longtitude,
     Details.timestamp
   FROM DriveDetails Details
   WHERE timestamp = (SELECT max(timestamp)
