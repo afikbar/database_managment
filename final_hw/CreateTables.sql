@@ -85,10 +85,13 @@ CREATE TABLE Drive (-- "Driven By"
   FOREIGN KEY (driverID) REFERENCES Driver (ID),
 );
 CREATE TABLE DriveDetails (
-  timestamp TIMESTAMP,
-  gps       VARCHAR(25),
-  passenger VARCHAR(25), -- Weak entity
-  driverID  VARCHAR(9),
+  timestamp  TIMESTAMP,
+  latitude   DECIMAL(8, 6) -- x value of coordinate
+    CHECK (latitude BETWEEN -90.0 AND 90.0), --between -90 to 90 degrees
+  longtitude DECIMAL(9, 6) -- y value of coordinate
+    CHECK (longtitude BETWEEN -180.0 AND 180.0), --between -180 to 180 degrees
+  passenger  VARCHAR(25), -- Weak entity
+  driverID   VARCHAR(9),
   PRIMARY KEY (timestamp, passenger, driverID),
   FOREIGN KEY (passenger, driverID) REFERENCES Drive (passenger, driverID),
 );
