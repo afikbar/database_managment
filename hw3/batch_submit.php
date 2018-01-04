@@ -20,6 +20,10 @@ if (isset($_POST["submit"])) {
         die(print_r(sqlsrv_errors(), true));
     }
     $file = $_FILES[csv][tmp_name];
+    if ($_FILES[csv][type] != 'text/csv') {
+        echo "error<br>";
+        die("Wrong file type! use CSV only");
+    }
     $file = fopen($file, 'r');
     $csvAsArray = [];
     //$csvAsArray = array_map(function($v){return str_getcsv($v, ",");}, file($file));
