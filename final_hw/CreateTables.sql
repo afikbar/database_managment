@@ -16,11 +16,11 @@ CREATE TABLE City (
   name VARCHAR(25) PRIMARY KEY,
 );
 
-CREATE TABLE CarType (
+CREATE TABLE CarType (-- set type table to lock cartype
   CarType VARCHAR(10) PRIMARY KEY,
 );
 
-INSERT INTO CarType (CarType) VALUES ('Urban'), ('Intercity');
+INSERT INTO CarType (CarType) VALUES ('Urban'), ('Intercity'); -- Different types of car
 
 CREATE TABLE Car (
   ID          VARCHAR(8) PRIMARY KEY CHECK (len(ID) > 6),
@@ -35,14 +35,14 @@ CREATE TABLE Car (
 
 CREATE TABLE UrbanCar (
   ID      VARCHAR(8) PRIMARY KEY,
-  carType VARCHAR(10) NOT NULL DEFAULT ('Urban') CHECK (carType = 'Urban'),
+  carType VARCHAR(10) NOT NULL DEFAULT ('Urban') CHECK (carType = 'Urban'), --validate that is urban
   FOREIGN KEY (ID, carType) REFERENCES Car (ID, carType)
     ON DELETE CASCADE,
 );
 
 CREATE TABLE IntercityCar (
   ID      VARCHAR(8) PRIMARY KEY,
-  carType VARCHAR(10) NOT NULL DEFAULT ('Intercity') CHECK (carType = 'Intercity'),
+  carType VARCHAR(10) NOT NULL DEFAULT ('Intercity') CHECK (carType = 'Intercity'), --validate intercity
   FOREIGN KEY (ID, carType) REFERENCES Car (ID, carType)
     ON DELETE CASCADE,
 );
@@ -85,7 +85,7 @@ CREATE TABLE Drive (-- "Driven By"
   FOREIGN KEY (driverID) REFERENCES Driver (ID),
 );
 CREATE TABLE DriveDetails (
-  timestamp  TIMESTAMP,
+  TIMESTAMP TIME,
   latitude   DECIMAL(8, 6) -- x value of coordinate
     CHECK (latitude BETWEEN -90.0 AND 90.0), --between -90 to 90 degrees
   longtitude DECIMAL(9, 6) -- y value of coordinate
