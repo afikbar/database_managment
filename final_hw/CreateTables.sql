@@ -8,7 +8,7 @@ CREATE TABLE Hobby (
 );
 
 CREATE TABLE Company (
-  name    VARCHAR(50) PRIMARY KEY,
+  cNum    INT PRIMARY KEY,
   address VARCHAR(50),
 );
 
@@ -16,7 +16,7 @@ CREATE TABLE City (
   name VARCHAR(25) PRIMARY KEY,
 );
 
-CREATE TABLE CarType (-- set type table to lock cartype
+CREATE TABLE CarType (-- set type table to lock cartype (Covers)
   CarType VARCHAR(10) PRIMARY KEY,
 );
 
@@ -27,9 +27,9 @@ CREATE TABLE Car (
   carType     VARCHAR(10) NOT NULL,
   size        INT,
   maxCapacity INT,
-  company     VARCHAR(50),
+  cNum     	  INT,
   UNIQUE (ID, carType),
-  FOREIGN KEY (company) REFERENCES Company (name),
+  FOREIGN KEY (cNum) REFERENCES Company (cNum),
   FOREIGN KEY (carType) REFERENCES CarType (CarType),
 );
 
@@ -64,7 +64,7 @@ CREATE TABLE Driver (
   name     VARCHAR(25),
   birthday DATE,
   address  VARCHAR(50),
-  comments VARCHAR(50),
+  generalInfo VARCHAR(50),
   FOREIGN KEY (mainHoby) REFERENCES Hobby (name),
   FOREIGN KEY (dCarID) REFERENCES Car (ID),
 );
@@ -80,12 +80,13 @@ CREATE TABLE PassengerHobbies (-- "Hobby list is"
 CREATE TABLE Drive (-- "Driven By"
   passenger VARCHAR(25),
   driverID  VARCHAR(9),
+  comments  VARCHAR(5),
   PRIMARY KEY (passenger, driverID),
   FOREIGN KEY (passenger) REFERENCES Passenger (username),
   FOREIGN KEY (driverID) REFERENCES Driver (ID),
 );
 CREATE TABLE DriveDetails (
-  TIMESTAMP TIME,
+  timestamp DATETIME,
   latitude   DECIMAL(8, 6) -- x value of coordinate
     CHECK (latitude BETWEEN -90.0 AND 90.0), --between -90 to 90 degrees
   longtitude DECIMAL(9, 6) -- y value of coordinate

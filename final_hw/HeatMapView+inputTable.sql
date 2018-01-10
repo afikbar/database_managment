@@ -10,7 +10,7 @@ GO
 
 
 CREATE VIEW HeatMap AS
-  SELECT count(DISTINCT driverID)
+  SELECT count(driverID) --to identify hotspots, we count each
   FROM DriveDetails Details, inputParams input -- cross with input that has 1 row
   WHERE (abs(Details.latitude - input.pLat) <= input.radius)--distance from lat,long to px,py is smaller than r
         AND (abs(Details.longtitude - input.pLong) <= input.radius)
