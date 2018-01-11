@@ -1,0 +1,26 @@
+DROP TABLE DriveDetails
+GO
+DROP TABLE Drive
+GO
+DROP TABLE PassengerHobbies
+GO
+DROP TABLE Driver
+GO
+DROP TABLE CarCities
+GO
+DROP TABLE IntercityCar
+GO
+DROP TABLE UrbanCar
+GO
+DROP TABLE Car
+GO
+DROP TABLE CarType
+GO
+DROP TABLE City
+GO
+DROP TABLE Company
+GO
+DROP TABLE Hobby
+GO
+DROP TABLE Passenger
+GO
