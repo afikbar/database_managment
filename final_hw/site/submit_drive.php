@@ -85,6 +85,7 @@ if (isset($_POST["submit"])) {
                     />
                 </label></td>
         </tr>
+        <tr>
             <td><br>
                 <button class="fab" type="reset"><p class="plus" style="font-size: 25px">&#10006</p></button>
             </td>
