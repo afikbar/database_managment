@@ -30,6 +30,7 @@ if (isset($_POST["submit"])) {
 
     fclose($file);
     $header = array_shift($csvAsArray);
+    echo $header."<br>";
     $csv = array();
     foreach ($csvAsArray as $row) {
         $csv[] = array_combine($header, $row);
