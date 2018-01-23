@@ -39,7 +39,7 @@ if (isset($_POST["submit"])) {
                 VALUES ('" . addslashes($row['Base']) . "',
                         '" . addslashes($row['Lat']) . "',
                         '" . addslashes($row['Lon']) . "',
-                        '" . addslashes($row['Date/time']) . "');";
+                        '" . addslashes($row['Date/Time']) . "');";
         echo $sql."<br>";
         $result = sqlsrv_query($conn, $sql);
         if (!$result) {
