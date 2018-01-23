@@ -18,7 +18,7 @@ if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
-echo "connected to DB"; //debug
+echo "connected to DB1"; //debug
 if (isset($_POST["submit"])) {
     echo "inside";
     $sql = "INSERT INTO driver(driver_id, name, date_of_birth, address, hobby)
