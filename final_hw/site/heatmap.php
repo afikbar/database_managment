@@ -10,12 +10,34 @@
     <h1>Data visualization:</h1>
     <table border="0">
         <tr>
+            <td>
+                <?php
+                echo '<select name="hour">';
+                foreach (range(1,24) as $number) {
+                echo '<option value='.$number.'>'.$number.'</option>';
+                }
+                echo '</select>';
+                ?>
+            </td>
             <td><label>
-                <input class="" name="Lat" type="number" size="25" required
-                       title="Lattitude is a required field!"
+                <input name="long" type="number" size="25" required
+                       title="Latitude is a required field!"
                        placeholder="Latitude"
                 />
             </label></td>
+            <td><label>
+                <input name="long" type="number" size="25" required
+                       title="Longitude is a required field!"
+                       placeholder="Longitude"
+                />
+            </label></td>
+            <td><label>
+                <input name="radius" type="number" size="25" required
+                       title="Radius is a required field!"
+                       placeholder="Radius"
+                />
+            </label></td>
+
         </tr>
     </table>
 </form>

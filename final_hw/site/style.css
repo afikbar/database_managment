@@ -3,6 +3,9 @@
 }
 
 /*input[required]::placeholder*/
+input::placeholder{
+    text-align: center;
+}
 .required::placeholder{
     color: red;
     text-align: right;
