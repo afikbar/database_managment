@@ -19,11 +19,12 @@ if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
-echo "connected to DB"; //debug
+echo "connected to DB<br>"; //debug
 if (isset($_POST["submit"])) {
     $pLat = $_POST['lat'];
     $pLong = $_POST['long'];
     $radius = $_POST['radius'];
+    echo "before sql<br>";
     $sql = "SELECT count(car_id)
             FROM small_drive Details 
             WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians((:pLat - Details.location_lat) / 2))) ^ 2 +
