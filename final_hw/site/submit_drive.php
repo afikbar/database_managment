@@ -18,7 +18,7 @@ if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
-//echo "connected to DB"; //debug
+echo "connected to DB"; //debug
 if (isset($_POST["submit"])) {
     $sql = "INSERT INTO driver(driver_id, name, date_of_birth, address, hobby)
                 VALUES ('" . addslashes($_POST[driver_id]) . "',
@@ -26,7 +26,7 @@ if (isset($_POST["submit"])) {
                         '" . addslashes($_POST[birthday]) . "',
                         '" . addslashes($_POST[address]) . "',
                         '" . addslashes($_POST[hobby]) . "');";
-    //echo $sql."<br>"; //debug
+    echo $sql."<br>"; //debug
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
