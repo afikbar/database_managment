@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
                         '" . addslashes($row['Lat']) . "',
                         '" . addslashes($row['Lon']) . "',
                         '" . addslashes($row['Date/time']) . "');";
-        echo sql."<br>";
+        echo $sql."<br>";
         $result = sqlsrv_query($conn, $sql);
         if (!$result) {
             die("Couldn't add the part specified.<br>");
