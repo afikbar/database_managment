@@ -21,6 +21,7 @@ if ($conn === false) {
 }
 echo "connected to DB<br>"; //debug
 if (isset($_POST["submit"])) {
+    echo "user input<br>";
     $pLat = $_POST['lat'];
     $pLong = $_POST['long'];
     $radius = $_POST['radius'];
@@ -36,7 +37,7 @@ if (isset($_POST["submit"])) {
     if (!$result) {
         die("Couldn't add the part specified.<br>");
     }
-    echo "loadScript()";
+    echo '<script type="text/javascript">','loadScript();','</script>';
 }
 ?>
 <form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" style="width: 50rem">
@@ -74,7 +75,7 @@ if (isset($_POST["submit"])) {
         </tr>
         <tr>
             <td colspan="4">
-                <button class="btn" type="submit" onclick="loadScript()">Submit</button>
+                <button class="btn" type="submit">Submit</button>
             </td>
         </tr>
     </table>
@@ -114,6 +115,7 @@ if (isset($_POST["submit"])) {
             }
         </script>
     </div>
+
 <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap"></script>-->
 </div>
 </body>
