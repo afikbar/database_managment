@@ -25,12 +25,12 @@ if (isset($_POST["submit"])) {
     //$csvAsArray = array_map(function($v){return str_getcsv($v, ",");}, file($file));
     // doesnt work since csv contain line-breaks. use instead this:
     while ($row = fgetcsv($file)) {
-        echo $row."<br>";
         $csvAsArray[] = $row;
     }
 
     fclose($file);
     $header = array_shift($csvAsArray);
+    print_r($header."<br>");
     $csv = array();
     foreach ($csvAsArray as $row) {
         $csv[] = array_combine($header, $row);
