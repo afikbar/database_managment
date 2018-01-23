@@ -9,9 +9,9 @@
 if (isset($_POST["submit"])) {
 // Connect to the database
     $server = "tcp:techniondbcourse01.database.windows.net,1433";
-    $user = "afikbar";
+    $user = "dbstudents";
     $pass = "Qwerty12!";
-    $database = "afikbar";
+    $database = "dbstudents";
     $c = array("Database" => $database, "UID" => $user, "PWD" => $pass);
     sqlsrv_configure('WarningsReturnAsErrors', 0);
     $conn = sqlsrv_connect($server, $c);
@@ -35,18 +35,11 @@ if (isset($_POST["submit"])) {
         $csv[] = array_combine($header, $row);
     }
     foreach ($csv as $row) {
-        $sql = "INSERT INTO Ted(name, main_speaker, description, event, languages,
-                                speaker_occupation, url, duration, comments, views)
-                VALUES ('" . addslashes($row[name]) . "',
-                        '" . addslashes($row[main_speaker]) . "',
-                        '" . addslashes($row[description]) . "',
-                        '" . addslashes($row[event]) . "',
-                        '" . addslashes($row[languages]) . "',
-                        '" . addslashes($row[speaker_occupation]) . "',
-                        '" . addslashes($row[url]) . "',
-                        '" . addslashes($row[duration]) . "',
-                        '" . addslashes($row[comments]) . "',
-                        '" . addslashes($row[views]) . "');";
+        $sql = "INSERT INTO small_drive(car_id, location_lat, location_long, Ctime)
+                VALUES ('" . addslashes($row['Base']) . "',
+                        '" . addslashes($row['Lat']) . "',
+                        '" . addslashes($row['Lon']) . "',
+                        '" . addslashes($row['Date/time']) . "');";
         sqlsrv_query($conn, $sql);
     }
     echo "<h2>Submitted!</h2>";
