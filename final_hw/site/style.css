@@ -3,7 +3,7 @@
 }
 
 /*input[required]::placeholder*/
-.required{
+.required::placeholder{
     color: red;
     text-align: right;
 }
