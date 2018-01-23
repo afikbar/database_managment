@@ -41,12 +41,11 @@ if (isset($_POST["submit"])) {
                         '" . addslashes($row['Lat']) . "',
                         '" . addslashes($row['Lon']) . "',
                         '" . addslashes($row['Date/Time']) . "');";
-        echo $sql."<br>";
         $result = sqlsrv_query($conn, $sql);
         if (!$result) {
-            die("Couldn't add the part specified.<br>");
+            echo("Couldn't add the drive specified.<br>");
+            echo $sql."<br>";
         }
-        echo "added successfuly<br>";
     }
     echo "<h2>Submitted!</h2>";
 }

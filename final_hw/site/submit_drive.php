@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
             <td><label>
                     <input name="driver_id" type="text" size="25" required
                            title="Driver ID is a required field!"
-                           placeholder="*"
+                           placeholder="*" class="required"
                     />
                 </label></td>
         </tr>

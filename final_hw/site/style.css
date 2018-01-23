@@ -2,7 +2,8 @@
     font-family: Roboto;
 }
 
-input[required]::placeholder {
+/*input[required]::placeholder*/
+.required{
     color: red;
     text-align: right;
 }
