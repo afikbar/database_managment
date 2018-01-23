@@ -19,7 +19,7 @@ if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
-//echo "connected to DB"; //debug
+echo "connected to DB"; //debug
 if (isset($_POST["submit"])) {
     $pLat = $_POST['lat'];
     $pLong = $_POST['long'];
@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
             WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians((:pLat - Details.location_lat) / 2))) ^ 2 +
                                      cos(radians(Details.location_lat)) * cos(radians(:pLat)) *
                                      (sin(radians((:pLong - Details.location_long) / 2))) ^ 2)) <= :radius);";
-    //echo $sql."<br>"; //debug
+    echo $sql."<br>"; //debug
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
@@ -73,7 +73,7 @@ if (isset($_POST["submit"])) {
         </tr>
         <tr>
             <td colspan="4">
-                <button class="btn" type="submit">Submit</button>
+                <button class="btn" type="submit" onclick="loadScript()">Submit</button>
             </td>
         </tr>
     </table>
