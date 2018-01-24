@@ -117,7 +117,7 @@ echo "connected to DB<br>"; //debug
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
                     // fillColor: qColor,
-                    fillColor: "0000FF",
+                    fillColor: "#0000FF",
                     fillOpacity: 0.4
                 })
                 qCircle.setMap(map)
@@ -132,7 +132,7 @@ echo "connected to DB<br>"; //debug
             }
         </script>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap"></script>
+<!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap"></script>-->
 </div>
 </body>
 </html>
