@@ -48,6 +48,7 @@ WHERE (datepart(HOUR, Details.Ctime) = 19) AND
     } else {
         $color = "FF0000";
     }
+    echo "before load<br>";
     echo "<script type='text/javascript'>loadScript();</script>";
 }
 ?>
@@ -86,7 +87,7 @@ WHERE (datepart(HOUR, Details.Ctime) = 19) AND
         </tr>
         <tr>
             <td colspan="4">
-                <button class="btn" type="submit" name="submit" value="submit" onclick="loadScript()">Submit</button>
+                <button class="btn" type="submit" name="submit" value="submit">Submit</button>
             </td>
         </tr>
     </table>
