@@ -48,7 +48,7 @@ WHERE (datepart(HOUR, Details.Ctime) = 19) AND
     } else {
         $color = "FF0000";
     }
-//    echo '<script type="text/javascript">', 'loadScript();', '</script>';
+    echo "<script type='text/javascript'>loadScript();</script>";
 }
 ?>
 <form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" style="width: 50rem">
