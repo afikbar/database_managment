@@ -228,7 +228,7 @@ iframe {
     font-size: 36px;
     font-family: 'Roboto';
     font-weight: 300;
-    animation: plus-out 0.3s;
+    animation: plus-out 1s;
     transition: all 0.3s;
 }
 
