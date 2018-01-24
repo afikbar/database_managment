@@ -56,7 +56,7 @@ if ($conn === false) {
         </tr>
         <tr>
             <td colspan="4">
-                <button class="btn" type="submit" name="submit" value="submit">Submit</button>
+                <button class="btn" type="submit" name="submit" value="submit" onclick="">Submit</button>
             </td>
         </tr>
     </table>
@@ -82,17 +82,20 @@ if ($conn === false) {
     }
     $row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
     $cnt = $row['carCnt'];
-    if ($cnt <= 20) {
-        $color = "#0000FF";
+    if ($cnt==0){
+        $color = "#b0bec5";
+    }
+    elseif ($cnt <= 20) {
+        $color = "#1976d2";
     } elseif ($cnt <= 50) {
-        $color = "#FF1493";
+        $color = "#f50057";
     } else {
-        $color = "#FF0000";
+        $color = "#f44336";
     }
 
 ?>
 <div class="card">
-    <div id="googleMap" style="width:50rem;height:40rem;">
+    <div id="googleMap" class="gMap">
         <script>
             function myMap() {
                 var qLat =  <?php echo json_encode($pLat,JSON_NUMERIC_CHECK); ?>;
@@ -102,7 +105,7 @@ if ($conn === false) {
                 var qPos = new google.maps.LatLng(qLat, qLng);
                 var mapProp = {
                     center: qPos,
-                    zoom: 10,
+                    zoom: 10
                 };
                 var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
                 var qCircle = new google.maps.Circle({
@@ -113,9 +116,10 @@ if ($conn === false) {
                     strokeWeight: 2,
                     fillColor: qColor,
                     fillOpacity: 0.4
-                })
-                qCircle.setMap(map)
+                });
+                qCircle.setMap(map);
                 map.fitBounds(qCircle.getBounds());//fits the maps bounds to circle
+                document.getElementById('googleMap').scrollIntoView();
             }
         </script>
     </div>

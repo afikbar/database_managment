@@ -9,8 +9,8 @@
 
 <!--<h2>View and manage previous TedTalks</h2>-->
 <div class="card"  style="text-align:center;">
-    <img src="images/new-york-picture-full.jpg" style="position:relative;opacity:0.4;filter:alpha(40);width:50rem;border-radius: 8px">
-    <img src="images/uber.svg" style="position:absolute;width:48rem;border-radius: 8px" alt="UBER NYC">
+    <img class="nyc_elem" src="images/new-york-picture-full.jpg">
+    <img class="uber_elem" src="images/uber.svg" style="" alt="UBER NYC">
 </div>
 <br>
 <br>
