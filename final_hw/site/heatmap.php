@@ -86,7 +86,7 @@ WHERE (datepart(HOUR, Details.Ctime) = 19) AND
         </tr>
         <tr>
             <td colspan="4">
-                <button class="btn" type="submit" name="submit" value="submit">Submit</button>
+                <button class="btn" type="submit" name="submit" value="submit" onclick="loadScript()">Submit</button>
             </td>
         </tr>
     </table>
