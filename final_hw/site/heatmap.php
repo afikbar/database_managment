@@ -93,7 +93,7 @@ echo "connected to DB<br>"; //debug
                 $color = "FF0000";
             }
             echo "before load<br>";
-            echo "<script type='text/javascript'>loadScript();</script>";
+            echo "<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap\"></script>";
         }
         ?>
         <script>
