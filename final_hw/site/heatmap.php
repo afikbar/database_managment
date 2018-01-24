@@ -69,8 +69,8 @@ echo "connected to DB<br>"; //debug
                 var qLng = <?php echo json_encode($pLong); ?>;
                 var qRadius = <?php echo json_encode($radius); ?>;
                 var qColor = <?php echo json_encode($color); ?>;
-                var qPos = new google.maps.LatLng(40.720485, -74.000206);
-                // var qPos = new google.maps.LatLng(qLat, qLng);
+                // var qPos = new google.maps.LatLng(40.720485, -74.000206);
+                var qPos = new google.maps.LatLng(qLat, qLng);
                 var mapProp = {
                     center: qPos,
                     zoom: 10,
@@ -78,13 +78,14 @@ echo "connected to DB<br>"; //debug
                 var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
                 var qCircle = new google.maps.Circle({
                     center: qPos,
-                    // radius: qRadius,
-                    radius: 500,
-                    strokeColor: "#0000FF",
+                    radius: qRadius,
+                    // radius: 500,
+                    // strokeColor: "#0000FF",
+                    strokeColor: qColor,
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
-                    // fillColor: qColor,
-                    fillColor: "#0000FF",
+                    fillColor: qColor,
+                    // fillColor: "#0000FF",
                     fillOpacity: 0.4
                 })
                 qCircle.setMap(map)
