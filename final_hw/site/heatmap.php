@@ -28,11 +28,11 @@ if (isset($_POST["submit"])) {
     echo "before sql<br>";
     $sql = "SELECT count(car_id) AS carCnt
             FROM small_drive Details 
-            WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians((? - Details.location_lat) / 2))) ^ 2 +
-                                     cos(radians(Details.location_lat)) * cos(radians(?)) *
-                                     (sin(radians((? - Details.location_long) / 2))) ^ 2)) <= ?);";
+            WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians(('$pLat' - Details.location_lat) / 2))) ^ 2 +
+                                     cos(radians(Details.location_lat)) * cos(radians('$pLat')) *
+                                     (sin(radians(('$pLong' - Details.location_long) / 2))) ^ 2)) <= '$radius');";
     echo $sql . "<br>"; //debug
-    $result = sqlsrv_query($conn, $sql, array($pLat, $pLat, $pLong, $radius));
+    $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
         die("Couldn't add the part specified.<br>");

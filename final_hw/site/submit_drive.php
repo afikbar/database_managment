@@ -18,23 +18,22 @@ if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
-echo "connected to DB1"; //debug
+//echo "connected to DB1"; //debug
 if (isset($_POST["submit"])) {
-    echo "inside";
+//    echo "inside";
     $sql = "INSERT INTO driver(driver_id, name, date_of_birth, address, hobby)
                 VALUES ('" . addslashes($_POST['driver_id']) . "',
                         '" . addslashes($_POST['name']) . "',
                         '" . addslashes($_POST['birthday']) . "',
                         '" . addslashes($_POST['address']) . "',
                         '" . addslashes($_POST['hobby']) . "');";
-    echo $sql."<br>"; //debug
+//    echo $sql."<br>"; //debug
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
-        echo "baaad";
         die("Couldn't add the part specified.<br>");
     }
-    echo "The details have been added to the database.<br><br>";
+    echo "<h2>The details have been added to the database.</h2><br><br>";
 }
 ?>
 <form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
