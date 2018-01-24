@@ -83,6 +83,7 @@ echo "connected to DB<br>"; //debug
         die("Couldn't add the part specified.<br>");
     }
     $cnt = $result['carCnt'];
+    echo $cnt . "<br>"; //debug
     if ($cnt <= 20) {
         $color = "#0000FF";
     } elseif ($cnt <= 50) {
