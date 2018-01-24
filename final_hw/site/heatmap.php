@@ -93,7 +93,7 @@ echo "connected to DB<br>"; //debug
                 $color = "FF0000";
             }
             echo "before load<br>";
-            echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap"></script>';
+            echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap"></script>';
         }
         ?>
         <script>
@@ -127,13 +127,12 @@ echo "connected to DB<br>"; //debug
             function loadScript() {
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap";
+                script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap";
                 document.body.appendChild(script);
             }
         </script>
     </div>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap"></script>
 </div>
 </body>
 </html>
