@@ -95,9 +95,9 @@ echo "connected to DB<br>"; //debug
     <div id="googleMap" style="width:50rem;height:40rem;">
         <script>
             function myMap() {
-                var qLat =  <?php echo json_encode($pLat); ?>;
-                var qLng = <?php echo json_encode($pLong); ?>;
-                var qRadius = <?php echo json_encode($radius); ?>;
+                var qLat =  <?php echo json_encode($pLat,JSON_NUMERIC_CHECK); ?>;
+                var qLng = <?php echo json_encode($pLong,JSON_NUMERIC_CHECK); ?>;
+                var qRadius = <?php echo json_encode($radius,JSON_NUMERIC_CHECK); ?>;
                 var qColor = <?php echo json_encode($color); ?>;
                 // var qPos = new google.maps.LatLng(40.720485, -74.000206);
                 var qPos = new google.maps.LatLng(qLat, qLng);
