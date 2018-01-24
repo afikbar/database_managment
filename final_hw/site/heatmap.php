@@ -19,7 +19,7 @@ if ($conn === false) {
     echo "error";
     die(print_r(sqlsrv_errors(), true));
 }
-echo "connected to DB<br>"; //debug
+//echo "connected to DB<br>"; //debug
 ?>
 <form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" style="width: 50rem">
     <h1>Data visualization:</h1>
@@ -63,12 +63,10 @@ echo "connected to DB<br>"; //debug
 </form>
 <?php
     if (isset($_POST["submit"])) {
-    echo "user input<br>";
     $hour = $_POST['hour'];
     $pLat = $_POST['lat'];
     $pLong = $_POST['long'];
     $radius = $_POST['radius'];
-    echo "before sql" . $pLat . "<br>";
     $sql = "SELECT count(car_id) AS carCnt
                         FROM small_drive Details
                         WHERE (datepart(HOUR, Details.Ctime) = 19) AND
@@ -76,21 +74,22 @@ echo "connected to DB<br>"; //debug
                                            cos(radians(Details.location_lat)) * cos(radians(" . $pLat . ")) *
                                            POWER((sin(radians((" . $pLong . " - Details.location_long) / 2))) , 2)))) <= " . $radius . ");";
 
-    echo $sql . "<br>"; //debug
+//    echo $sql . "<br>"; //debug
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
         die("Couldn't add the part specified.<br>");
     }
-    $cnt = $result['carCnt'];
-    echo $cnt . "<br>"; //debug
+    $row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC);
+    $cnt = $row['carCnt'];
     if ($cnt <= 20) {
         $color = "#0000FF";
     } elseif ($cnt <= 50) {
         $color = "#FF1493";
     } else {
-        $color = "FF0000";
+        $color = "#FF0000";
     }
+
 ?>
 <div class="card">
     <div id="googleMap" style="width:50rem;height:40rem;">
@@ -100,7 +99,6 @@ echo "connected to DB<br>"; //debug
                 var qLng = <?php echo json_encode($pLong,JSON_NUMERIC_CHECK); ?>;
                 var qRadius = <?php echo json_encode($radius,JSON_NUMERIC_CHECK); ?>;
                 var qColor = <?php echo json_encode($color); ?>;
-                // var qPos = new google.maps.LatLng(40.720485, -74.000206);
                 var qPos = new google.maps.LatLng(qLat, qLng);
                 var mapProp = {
                     center: qPos,
@@ -110,33 +108,21 @@ echo "connected to DB<br>"; //debug
                 var qCircle = new google.maps.Circle({
                     center: qPos,
                     radius: qRadius,
-                    // radius: 500,
-                    // strokeColor: "#0000FF",
                     strokeColor: qColor,
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
                     fillColor: qColor,
-                    // fillColor: "#0000FF",
                     fillOpacity: 0.4
                 })
                 qCircle.setMap(map)
-
-            }
-
-            function loadScript() {
-                var script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap";
-                document.body.appendChild(script);
+                map.fitBounds(qCircle.getBounds());//fits the maps bounds to circle
             }
         </script>
     </div>
     <?php
-        echo "before load<br>";
         echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap"></script>';
-        }
+        }//closure of isset
     ?>
-    <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6wuQJDE4QzG9Oy_FDXcOtuptY4Lksu8&callback=myMap"></script>-->
 </div>
 </body>
 </html>

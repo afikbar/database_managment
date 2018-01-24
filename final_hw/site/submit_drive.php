@@ -20,7 +20,6 @@ if ($conn === false) {
 }
 //echo "connected to DB1"; //debug
 if (isset($_POST["submit"])) {
-//    echo "inside";
     $sql = "INSERT INTO driver(driver_id, name, date_of_birth, address, hobby)
                 VALUES ('" . addslashes($_POST['driver_id']) . "',
                         '" . addslashes($_POST['name']) . "',
@@ -31,7 +30,7 @@ if (isset($_POST["submit"])) {
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
-        die("Couldn't add the part specified.<br>");
+        die("Couldn't add the details specified.<br>");
     }
     echo "<h2>The details have been added to the database.</h2><br><br>";
 }
@@ -66,7 +65,7 @@ if (isset($_POST["submit"])) {
             <td>Driver's address:</td>
             <td><label>
                     <input name="address" type="text" size="25"
-                            placeholder="Driver's address"
+                           placeholder="Driver's address"
                     />
                 </label></td>
         </tr>

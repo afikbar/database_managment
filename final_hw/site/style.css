@@ -31,6 +31,16 @@ select option[value=""] {
 [hidden] {
     display: none;
 }
+input[type="date"]{outline: none; border: 0;}
+input[type="date"]::-webkit-datetime-edit {border-bottom: 1px solid rgba(0, 0, 0, .26); }
+input[type="date"]::-webkit-datetime-edit-fields-wrapper { background: transparent; }
+input[type="date"]::-webkit-datetime-edit-text { color: #999; padding: 0 0.2em; }
+input[type="date"]::-webkit-datetime-edit-month-field { color: #999; text-transform: uppercase; }
+input[type="date"]::-webkit-datetime-edit-day-field { color: #999; text-transform: uppercase; }
+input[type="date"]::-webkit-datetime-edit-year-field { color: #999; text-transform: uppercase; }
+input[type="date"]::-webkit-inner-spin-button { display: none; }
+input[type="date"]::-webkit-calendar-picker-indicator { background: orange; }
+
 th, td {
     padding: 10px;
 }
@@ -262,3 +272,4 @@ iframe {
     border-bottom:2px solid #00796B;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+
