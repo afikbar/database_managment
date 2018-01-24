@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>Uber Heatmap</title>
+    <title>UBER-NYC Heatmap</title>
 </head>
 <body>
 <?php
@@ -29,7 +29,7 @@ if ($conn === false) {
                 <select name="hour" required>
                     <option value="" disabled selected hidden>Hour</option>
                     <?php
-                    foreach (range(1, 24) as $number) {
+                    foreach (range(0, 23) as $number) {
                         echo '<option value=' . $number . '>' . $number . '</option>';
                     }
                     ?>
@@ -69,8 +69,8 @@ if ($conn === false) {
     $radius = $_POST['radius'];
     $sql = "SELECT count(car_id) AS carCnt
                         FROM small_drive Details
-                        WHERE (datepart(HOUR, Details.Ctime) = 19) AND
-                              ((1.60934 * 2 * 3961 * asin(sqrt(POWER((sin(radians((" . $pLat . " - Details.location_lat) / 2))) , 2) +
+                        WHERE (datepart(HOUR, Details.Ctime) = ".$hour.") AND
+                              ((1609.34 * 2 * 3961 * asin(sqrt(POWER((sin(radians((" . $pLat . " - Details.location_lat) / 2))) , 2) +
                                            cos(radians(Details.location_lat)) * cos(radians(" . $pLat . ")) *
                                            POWER((sin(radians((" . $pLong . " - Details.location_long) / 2))) , 2)))) <= " . $radius . ");";
 

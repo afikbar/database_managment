@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>UBER-NYC</title>
 </head>
 <body>
 
@@ -58,7 +59,7 @@ if (isset($_POST["submit"])) {
         <tr>
             <td>Driver's birthday</td>
             <td><label>
-                    <input name="birthday" type="date" size="25">
+                    <input id="date" name="birthday" type="date" size="25">
                 </label></td>
         </tr>
         <tr>
@@ -88,6 +89,17 @@ if (isset($_POST["submit"])) {
 
     </table>
 </form>
+<script >
+    var dateElem = document.getElementById('date');
+    el.onchange = function() {
+        if (el.value === '') {
+            el.classList.add("empty");
+        } else {
+            el.classList.remove("empty");
+        }
+    }
+
+</script>
 </body>
 </html>
 

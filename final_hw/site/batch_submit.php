@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>TedTalks DB batch submit</title>
+    <title>UBER-NYC DB batch submit</title>
 </head>
 <body>
 <?php
