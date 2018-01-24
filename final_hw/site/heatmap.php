@@ -20,37 +20,6 @@ if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 echo "connected to DB<br>"; //debug
-if (isset($_POST["submit"])) {
-    echo "user input<br>";
-    $hour = $_POST['hour'];
-    $pLat = $_POST['lat'];
-    $pLong = $_POST['long'];
-    $radius = $_POST['radius'];
-    echo "before sql" . $pLat . "<br>";
-    $sql = "SELECT count(car_id) AS carCnt
-FROM small_drive Details
-WHERE (datepart(HOUR, Details.Ctime) = 19) AND
-      ((1.60934 * 2 * 3961 * asin(sqrt(POWER((sin(radians((" . $pLat . " - Details.location_lat) / 2))) , 2) +
-                                       cos(radians(Details.location_lat)) * cos(radians(" . $pLat . ")) *
-                                       POWER((sin(radians((" . $pLong . " - Details.location_long) / 2))) , 2)))) <= " . $radius . ");";
-
-    echo $sql . "<br>"; //debug
-    $result = sqlsrv_query($conn, $sql);
-    // In case of failure
-    if (!$result) {
-        die("Couldn't add the part specified.<br>");
-    }
-    $cnt = $result['carCnt'];
-    if ($cnt <= 20) {
-        $color = "#0000FF";
-    } elseif ($cnt <= 50) {
-        $color = "#FF1493";
-    } else {
-        $color = "FF0000";
-    }
-    echo "before load<br>";
-    echo "<script type='text/javascript'>loadScript();</script>";
-}
 ?>
 <form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" style="width: 50rem">
     <h1>Data visualization:</h1>
@@ -94,13 +63,46 @@ WHERE (datepart(HOUR, Details.Ctime) = 19) AND
 </form>
 <div class="card">
     <div id="googleMap" style="width:50rem;height:40rem;">
+        <?php
+        if (isset($_POST["submit"])) {
+            echo "user input<br>";
+            $hour = $_POST['hour'];
+            $pLat = $_POST['lat'];
+            $pLong = $_POST['long'];
+            $radius = $_POST['radius'];
+            echo "before sql" . $pLat . "<br>";
+            $sql = "SELECT count(car_id) AS carCnt
+                    FROM small_drive Details
+                    WHERE (datepart(HOUR, Details.Ctime) = 19) AND
+                          ((1.60934 * 2 * 3961 * asin(sqrt(POWER((sin(radians((" . $pLat . " - Details.location_lat) / 2))) , 2) +
+                                       cos(radians(Details.location_lat)) * cos(radians(" . $pLat . ")) *
+                                       POWER((sin(radians((" . $pLong . " - Details.location_long) / 2))) , 2)))) <= " . $radius . ");";
+
+            echo $sql . "<br>"; //debug
+            $result = sqlsrv_query($conn, $sql);
+            // In case of failure
+            if (!$result) {
+                die("Couldn't add the part specified.<br>");
+            }
+            $cnt = $result['carCnt'];
+            if ($cnt <= 20) {
+                $color = "#0000FF";
+            } elseif ($cnt <= 50) {
+                $color = "#FF1493";
+            } else {
+                $color = "FF0000";
+            }
+            echo "before load<br>";
+            echo "<script type='text/javascript'>loadScript();</script>";
+        }
+        ?>
         <script>
             function myMap() {
                 var qLat =  <?php echo json_encode($pLat); ?>;
                 var qLng = <?php echo json_encode($pLong); ?>;
                 var qRadius = <?php echo json_encode($radius); ?>;
                 var qColor = <?php echo json_encode($color); ?>;
-                var qPos =  new google.maps.LatLng(40.720485, -74.000206);
+                var qPos = new google.maps.LatLng(40.720485, -74.000206);
                 // var qPos = new google.maps.LatLng(qLat, qLng);
                 var mapProp = {
                     center: qPos,
