@@ -22,15 +22,17 @@ if ($conn === false) {
 echo "connected to DB<br>"; //debug
 if (isset($_POST["submit"])) {
     echo "user input<br>";
+    $hour = $_POST['hour'];
     $pLat = $_POST['lat'];
     $pLong = $_POST['long'];
     $radius = $_POST['radius'];
-    echo "before sql".$pLat."<br>";
+    echo "before sql" . $pLat . "<br>";
     $sql = "SELECT count(car_id) AS carCnt
-            FROM small_drive Details 
-            WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians((".$pLat." - Details.location_lat) / 2))) ^ 2 +
-                                     cos(radians(Details.location_lat)) * cos(radians(".$pLat.")) *
-                                     (sin(radians((".$pLong." - Details.location_long) / 2))) ^ 2)) <= ".$radius.");";
+FROM small_drive Details
+WHERE (datepart(HOUR, Details.Ctime) = 19) AND
+      ((1.60934 * 2 * 3961 * asin(sqrt(POWER((sin(radians((" . $pLat . " - Details.location_lat) / 2))) , 2) +
+                                       cos(radians(Details.location_lat)) * cos(radians(" . $pLat . ")) *
+                                       POWER((sin(radians((" . $pLong . " - Details.location_long) / 2))) , 2)))) <= " . $radius . ");";
 
     echo $sql . "<br>"; //debug
     $result = sqlsrv_query($conn, $sql);
@@ -41,9 +43,9 @@ if (isset($_POST["submit"])) {
     $cnt = $result['carCnt'];
     if ($cnt <= 20) {
         $color = "#0000FF";
-    } elseif ($cnt <= 50){
+    } elseif ($cnt <= 50) {
         $color = "#FF1493";
-    }else{
+    } else {
         $color = "FF0000";
     }
     echo '<script type="text/javascript">', 'loadScript();', '</script>';
@@ -54,7 +56,7 @@ if (isset($_POST["submit"])) {
     <table border="0">
         <tr>
             <td>
-                <select required>
+                <select name="hour" required>
                     <option value="" disabled selected hidden>Hour</option>
                     <?php
                     foreach (range(1, 24) as $number) {
