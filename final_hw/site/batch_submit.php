@@ -52,9 +52,16 @@ if (isset($_POST["submit"])) {
 ?>
 <div class="card" style="text-align: left; width: auto">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
-        <input name="csv" type="file" id="csv" required/>
-        <br><br>
-        <input type="submit" name="submit" value="Submit"/>
+        <h2>Submit a .csv file:</h2>
+        <table>
+            <tr><td><label class="btn">
+                        Select file
+                    <input name="csv" type="file" id="csv" required/>
+                </label></td>
+            <td>
+                    <input class="btn" type="submit" name="submit" value="Submit"/>
+                </td></tr>
+        </table>
     </form>
 </div>
 </body>
