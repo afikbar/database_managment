@@ -26,18 +26,26 @@ if (isset($_POST["submit"])) {
     $pLong = $_POST['long'];
     $radius = $_POST['radius'];
     echo "before sql<br>";
-    $sql = "SELECT count(car_id)
+    $sql = "SELECT count(car_id) AS carCnt
             FROM small_drive Details 
             WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians((? - Details.location_lat) / 2))) ^ 2 +
                                      cos(radians(Details.location_lat)) * cos(radians(?)) *
                                      (sin(radians((? - Details.location_long) / 2))) ^ 2)) <= ?);";
-    echo $sql."<br>"; //debug
-    $result = sqlsrv_query($conn, $sql,array($pLat, $pLat, $pLong, $radius));
+    echo $sql . "<br>"; //debug
+    $result = sqlsrv_query($conn, $sql, array($pLat, $pLat, $pLong, $radius));
     // In case of failure
     if (!$result) {
         die("Couldn't add the part specified.<br>");
     }
-    echo '<script type="text/javascript">','loadScript();','</script>';
+    $cnt = $result['carCnt'];
+    if ($cnt <= 20) {
+        $color = "#0000FF";
+    } elseif ($cnt <= 50){
+        $color = "#FF1493";
+    }else{
+        $color = "FF0000";
+    }
+    echo '<script type="text/javascript">', 'loadScript();', '</script>';
 }
 ?>
 <form class="card" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" style="width: 50rem">
@@ -85,11 +93,11 @@ if (isset($_POST["submit"])) {
         <script>
             function myMap() {
                 var qLat =  <?php echo json_encode($pLat); ?>;
-                var qLng= <?php echo json_encode($pLong); ?>;
+                var qLng = <?php echo json_encode($pLong); ?>;
                 var qRadius = <?php echo json_encode($radius); ?>;
                 var qColor = <?php echo json_encode($color); ?>;
                 // var qPos =  new google.maps.LatLng(40.720485, -74.000206);
-                var qPos =  new google.maps.LatLng(qLat,qLng);
+                var qPos = new google.maps.LatLng(qLat, qLng);
                 var mapProp = {
                     center: qPos,
                     zoom: 10,
@@ -107,6 +115,7 @@ if (isset($_POST["submit"])) {
                 qCircle.setMap(map)
 
             }
+
             function loadScript() {
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
@@ -116,7 +125,7 @@ if (isset($_POST["submit"])) {
         </script>
     </div>
 
-<!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap"></script>-->
+    <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXeYz8-_twayJlyygdP3WIZc4SO1AVYSE&callback=myMap"></script>-->
 </div>
 </body>
 </html>
