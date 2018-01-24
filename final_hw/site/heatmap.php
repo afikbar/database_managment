@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
     $pLat = $_POST['lat'];
     $pLong = $_POST['long'];
     $radius = $_POST['radius'];
-    echo "before sql<br>";
+    echo "before sql".$pLat."<br>";
     $sql = "SELECT count(car_id) AS carCnt
             FROM small_drive Details 
             WHERE (1.60934 * 2 * 3961 * asin(sqrt((sin(radians((".$pLat." - Details.location_lat) / 2))) ^ 2 +
