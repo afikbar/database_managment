@@ -64,7 +64,7 @@ if (isset($_POST["submit"])) {
                 </select>
             </td>
             <td><label>
-                    <input name="long" type="number" size="25" step="any" required
+                    <input name="lat" type="number" size="25" step="any" required
                            min="-90" max="90" title="Latitude is a required field!"
                            placeholder="Latitude"
                     />
