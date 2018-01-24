@@ -22,7 +22,7 @@ echo "connected to DB1"; //debug
 if (isset($_POST["submit"])) {
     echo "inside";
     $sql = "INSERT INTO driver(driver_id, name, date_of_birth, address, hobby)
-                VALUES ('" . addslashes($_POST['driver_id') . "',
+                VALUES ('" . addslashes($_POST['driver_id']) . "',
                         '" . addslashes($_POST['name']) . "',
                         '" . addslashes($_POST['birthday']) . "',
                         '" . addslashes($_POST['address']) . "',
