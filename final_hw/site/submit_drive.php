@@ -86,19 +86,17 @@ if (isset($_POST["submit"])) {
                 <button type="submit" name="submit" value="submit" class="fab"><p class="plus">+</p></button>
             </td>
         </tr>
-
     </table>
 </form>
-<script >
+<script>
     var dateElem = document.getElementById('date');
-    el.onchange = function() {
+    el.onchange = function () {
         if (el.value === '') {
             el.classList.add("empty");
         } else {
             el.classList.remove("empty");
         }
     }
-
 </script>
 </body>
 </html>
