@@ -22,11 +22,11 @@ echo "connected to DB1"; //debug
 if (isset($_POST["submit"])) {
     echo "inside";
     $sql = "INSERT INTO driver(driver_id, name, date_of_birth, address, hobby)
-                VALUES ('" . addslashes($_POST[driver_id]) . "',
-                        '" . addslashes($_POST[name]) . "',
-                        '" . addslashes($_POST[birthday]) . "',
-                        '" . addslashes($_POST[address]) . "',
-                        '" . addslashes($_POST[hobby]) . "');";
+                VALUES ('" . addslashes($_POST['driver_id') . "',
+                        '" . addslashes($_POST['name']) . "',
+                        '" . addslashes($_POST['birthday']) . "',
+                        '" . addslashes($_POST['address']) . "',
+                        '" . addslashes($_POST['hobby']) . "');";
     echo $sql."<br>"; //debug
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
@@ -84,7 +84,7 @@ if (isset($_POST["submit"])) {
                 <button class="fab" type="reset"><p class="plus" style="font-size: 25px">&#10006</p></button>
             </td>
             <td align="right"><br>
-                <button type="submit" class="fab"><p class="plus">+</p></button>
+                <button type="submit" name="submit" value="submit" class="fab"><p class="plus">+</p></button>
             </td>
         </tr>
 
