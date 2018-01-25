@@ -30,7 +30,7 @@
         $page = 1;
     };
     $start_from = ($page - 1) * $results_per_page;
-    $sql = "SELECT * FROM POI_NYC ORDER BY Hour ASC";
+    $sql = "SELECT * FROM NYC_POI_TABLE ORDER BY Hour ASC";
 //    $sql = "SELECT name,url,(10*comments+0.1*views)/duration AS popularity FROM Ted ORDER BY CURRENT_TIMESTAMP
 //            OFFSET $start_from ROWS FETCH NEXT  $results_per_page ROWS ONLY ";
     $rs_result = sqlsrv_query($conn, $sql);
