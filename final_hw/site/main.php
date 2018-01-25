@@ -14,7 +14,9 @@
 </div>
 <br>
 <br>
-<iframe name="tableFrame" src="table.php" style="width: 100%; height: 100%"></iframe>
+
+<iframe name="tableFrame" src="table.php" style="width: 100%; height: 900px;"></iframe>
+
 
 
 </body>

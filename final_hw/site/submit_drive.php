@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
     $result = sqlsrv_query($conn, $sql);
     // In case of failure
     if (!$result) {
-        die("Couldn't add the details specified.<br>");
+        die("<h2>Couldn't add the details specified.</h2>>");
     }
     echo "<h2>The details have been added to the database.</h2><br><br>";
 }
